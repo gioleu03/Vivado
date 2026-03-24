@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../async_FIFO.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_sim_netlist.vhdl" \
+"../../../../async_FIFO.srcs/sources_1/new/async_FIFO.vhd" \
+"../../../../async_FIFO.srcs/sim_1/new/async_FIFO_tb.vhd" \
+
+# Do not sort compile order
+nosort

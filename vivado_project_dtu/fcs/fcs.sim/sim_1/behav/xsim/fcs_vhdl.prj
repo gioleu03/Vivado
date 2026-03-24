@@ -1,0 +1,6 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../fcs.srcs/sources_1/new/fcs.vhd" \
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../shiftregister.srcs/sources_1/imports/02_-_ShiftRegisterSIPO/ff_d.vhd" \
+"../../../../shiftregister.srcs/sources_1/new/shiftregister.vhd" \
+"../../../../shiftregister.srcs/sim_1/imports/02_-_ShiftRegisterSIPO/top_sim.vhd" \
+
+# Do not sort compile order
+nosort

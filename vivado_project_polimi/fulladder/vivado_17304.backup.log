@@ -1,0 +1,311 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Thu Oct 10 13:25:23 2024
+# Process ID: 17304
+# Current directory: C:/Users/giorg/Desktop/progettivivado/fulladder
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent21188 C:\Users\giorg\Desktop\progettivivado\fulladder\fulladder.xpr
+# Log file: C:/Users/giorg/Desktop/progettivivado/fulladder/vivado.log
+# Journal file: C:/Users/giorg/Desktop/progettivivado/fulladder\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.3/data/ip'.
+open_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 670.648 ; gain = 81.207
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 10 14:43:04 2024...
+ting synth_design
+Using part: xc7a12ticsg325-1L
+Top: Adder_4bit
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 780.859 ; gain = 82.164
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+WARNING: [Synth 8-5640] Port 'a' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'b' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'c' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'sum' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'carry' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst1' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'af' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'bf' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'ci' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'cf' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'sf' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-285] failed synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 837.895 ; gain = 139.199
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+2 Infos, 5 Warnings, 0 Critical Warnings and 7 Errors encountered.
+synth_design failed
+ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a12ticsg325-1L
+Top: Adder_4bit
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 837.895 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+WARNING: [Synth 8-5640] Port 'a' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'b' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'c' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'sum' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'carry' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst1' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'af' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'bf' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'ci' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'cf' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'sf' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-285] failed synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 837.895 ; gain = 0.000
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+2 Infos, 5 Warnings, 0 Critical Warnings and 7 Errors encountered.
+synth_design failed
+ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a12ticsg325-1L
+Top: Adder_4bit
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:03 . Memory (MB): peak = 837.895 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+WARNING: [Synth 8-5640] Port 'a' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'b' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'c' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'sum' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+WARNING: [Synth 8-5640] Port 'carry' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:53]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst1' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'af' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'bf' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'ci' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'cf' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-3493] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' does not have matching formal port for component port 'sf' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:66]
+ERROR: [Synth 8-285] failed synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 837.895 ; gain = 0.000
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+2 Infos, 5 Warnings, 0 Critical Warnings and 7 Errors encountered.
+synth_design failed
+ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a12ticsg325-1L
+Top: Adder_4bit
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 877.848 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst1' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:67]
+INFO: [Synth 8-638] synthesizing module 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:45]
+WARNING: [Synth 8-5640] Port 'sumh' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:47]
+INFO: [Synth 8-3491] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' bound to instance 'half_adder_inst1' of component 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:59]
+ERROR: [Synth 8-3493] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' does not have matching formal port for component port 'sh' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:59]
+ERROR: [Synth 8-285] failed synthesizing module 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:45]
+ERROR: [Synth 8-285] failed synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 877.848 ; gain = 0.000
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+4 Infos, 1 Warnings, 0 Critical Warnings and 4 Errors encountered.
+synth_design failed
+ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a12ticsg325-1L
+Top: Adder_4bit
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 877.848 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst1' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:67]
+INFO: [Synth 8-638] synthesizing module 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:45]
+WARNING: [Synth 8-5640] Port 'sumh' is missing in component declaration [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:47]
+INFO: [Synth 8-3491] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' bound to instance 'half_adder_inst1' of component 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:59]
+ERROR: [Synth 8-3493] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' does not have matching formal port for component port 'sh' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:59]
+ERROR: [Synth 8-285] failed synthesizing module 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:45]
+ERROR: [Synth 8-285] failed synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 878.816 ; gain = 0.969
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+4 Infos, 1 Warnings, 0 Critical Warnings and 4 Errors encountered.
+synth_design failed
+ERROR: [Vivado_Tcl 4-5] Elaboration failed - please see the console for details
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a12ticsg325-1L
+Top: Adder_4bit
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 878.816 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst1' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:67]
+INFO: [Synth 8-638] synthesizing module 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:45]
+INFO: [Synth 8-3491] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' bound to instance 'half_adder_inst1' of component 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:59]
+INFO: [Synth 8-638] synthesizing module 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:43]
+INFO: [Synth 8-256] done synthesizing module 'half_adder' (1#1) [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:43]
+INFO: [Synth 8-3491] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' bound to instance 'half_adder_inst2' of component 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:66]
+WARNING: [Synth 8-3848] Net sum1 in module/entity full_adder does not have driver. [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:56]
+INFO: [Synth 8-256] done synthesizing module 'full_adder' (2#1) [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:45]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst2' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:76]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst3' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:85]
+INFO: [Synth 8-3491] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' bound to instance 'half_adder_inst4' of component 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:94]
+INFO: [Synth 8-256] done synthesizing module 'Adder_4bit' (3#1) [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 878.816 ; gain = 0.000
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+WARNING: [Synth 8-3295] tying undriven pin half_adder_inst2:bh to constant 0 [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:66]
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 878.816 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 878.816 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a12ticsg325-1L
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1124.523 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1210.641 ; gain = 331.824
+16 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1210.641 ; gain = 331.824
+launch_runs synth_1 -jobs 6
+[Thu Oct 10 14:26:03 2024] Launched synth_1...
+Run output will be captured here: C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.runs/synth_1/runme.log
+close_design
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7a12ticsg325-1L
+INFO: [Project 1-479] Netlist was created with Vivado 2018.3
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1210.676 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+close_design
+synth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a12ticsg325-1L
+Top: Adder_4bit
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1775.332 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'Adder_4bit' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst4' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:67]
+INFO: [Synth 8-638] synthesizing module 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:45]
+INFO: [Synth 8-3491] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' bound to instance 'half_adder_inst1' of component 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:59]
+INFO: [Synth 8-638] synthesizing module 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:43]
+INFO: [Synth 8-256] done synthesizing module 'half_adder' (1#1) [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:43]
+INFO: [Synth 8-3491] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' bound to instance 'half_adder_inst2' of component 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:66]
+WARNING: [Synth 8-3848] Net sum1 in module/entity full_adder does not have driver. [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:56]
+INFO: [Synth 8-256] done synthesizing module 'full_adder' (2#1) [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:45]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst3' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:76]
+INFO: [Synth 8-3491] module 'full_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:34' bound to instance 'full_adder_inst2' of component 'full_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:85]
+INFO: [Synth 8-3491] module 'half_adder' declared at 'C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/halfadder.vhd:34' bound to instance 'half_adder_inst1' of component 'half_adder' [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:94]
+INFO: [Synth 8-256] done synthesizing module 'Adder_4bit' (3#1) [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/lab2.vhd:43]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1775.332 ; gain = 0.000
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+WARNING: [Synth 8-3295] tying undriven pin half_adder_inst2:bh to constant 0 [C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.srcs/sources_1/new/fulladder.vhd:66]
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1775.332 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1775.332 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1797.789 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1797.789 ; gain = 22.457
+15 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1797.789 ; gain = 22.457
+reset_run synth_1
+launch_runs synth_1 -jobs 6
+[Thu Oct 10 14:30:02 2024] Launched synth_1...
+Run output will be captured here: C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.runs/synth_1/runme.log
+close_design
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7a12ticsg325-1L
+INFO: [Project 1-479] Netlist was created with Vivado 2018.3
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1797.789 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+reset_run synth_1
+launch_runs synth_1 -jobs 6
+[Thu Oct 10 14:33:39 2024] Launched synth_1...
+Run output will be captured here: C:/Users/giorg/Desktop/progettivivado/fulladder/fulladder.runs/synth_1/runme.log
+close_design
+open_run synth_1 -name synth_1
+Design is defaulting to impl run constrset: constrs_1
+Design is defaulting to synth run part: xc7a12ticsg325-1L
+INFO: [Project 1-479] Netlist was created with Vivado 2018.3
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2103.828 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+exit
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 10 14:43:00 2024...

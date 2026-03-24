@@ -1,0 +1,9 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../UpDownSyncCount.srcs/sources_1/new/RegFabio.vhd" \
+"../../../../UpDownSyncCount.srcs/sources_1/new/UpDownSyncCounter.vhd" \
+"../../../../UpDownSyncCount.srcs/sources_1/imports/03_-_UpDownSyncCounter/ff_d.vhd" \
+"../../../../UpDownSyncCount.srcs/sim_1/imports/03_-_UpDownSyncCounter/top_sim.vhd" \
+
+# Do not sort compile order
+nosort

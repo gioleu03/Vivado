@@ -1,0 +1,8 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/giorg/Desktop/progettivivado/UpDownSyncCount/UpDownSyncCount.srcs/sources_1/new/RegFabio.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'RegFabio'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/giorg/Desktop/progettivivado/UpDownSyncCount/UpDownSyncCount.srcs/sources_1/new/UpDownSyncCounter.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'UpDownSyncCounter'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/giorg/Desktop/progettivivado/UpDownSyncCount/UpDownSyncCount.srcs/sources_1/imports/03_-_UpDownSyncCounter/ff_d.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'ff_d'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/giorg/Desktop/progettivivado/UpDownSyncCount/UpDownSyncCount.srcs/sim_1/imports/03_-_UpDownSyncCounter/top_sim.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'top_sim'

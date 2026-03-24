@@ -1,0 +1,23 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Wed Oct 23 10:52:12 2024
+# Process ID: 776
+# Current directory: C:/Users/giorg/Desktop/progettivivado/shiftregister
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12612 C:\Users\giorg\Desktop\progettivivado\shiftregister\shiftregister.xpr
+# Log file: C:/Users/giorg/Desktop/progettivivado/shiftregister/vivado.log
+# Journal file: C:/Users/giorg/Desktop/progettivivado/shiftregister\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/giorg/Desktop/progettivivado/shiftregister/shiftregister.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.3/data/ip'.
+update_compile_order -fileset sources_1
+update_compile_order -fileset sources_1
+ERROR: [Vivado 12-106] *** Exception: java.lang.reflect.InvocationTargetException (See C:/Users/giorg/Desktop/progettivivado/shiftregister/vivado_pid776.debug)
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Oct 23 11:05:19 2024...

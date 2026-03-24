@@ -1,0 +1,17 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Fri Feb 20 14:14:47 2026
+# Process ID: 10148
+# Current directory: C:/Users/giorg/Desktop/fcs
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13868 C:\Users\giorg\Desktop\fcs\fcs.xpr
+# Log file: C:/Users/giorg/Desktop/fcs/vivado.log
+# Journal file: C:/Users/giorg/Desktop/fcs\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/giorg/Desktop/fcs/fcs.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source tb_fcs_serial.tcl
+close_sim

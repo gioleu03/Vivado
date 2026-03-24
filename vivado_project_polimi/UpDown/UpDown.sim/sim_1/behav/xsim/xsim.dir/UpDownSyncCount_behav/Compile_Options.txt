@@ -1,0 +1,1 @@
+-wto "38e011baa2ff4f91b335f2f7a1352df3" --incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "UpDownSyncCount_behav" "xil_defaultlib.UpDownSyncCount" -log "elaborate.log" 

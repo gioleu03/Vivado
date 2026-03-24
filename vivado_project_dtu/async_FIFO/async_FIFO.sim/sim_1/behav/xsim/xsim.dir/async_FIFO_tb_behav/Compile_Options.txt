@@ -1,0 +1,1 @@
+-wto "dc6a0c7446cb41b9a9d506e22fd06013" --incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" -L "xpm" --snapshot "async_FIFO_tb_behav" "xil_defaultlib.async_FIFO_tb" -log "elaborate.log" 

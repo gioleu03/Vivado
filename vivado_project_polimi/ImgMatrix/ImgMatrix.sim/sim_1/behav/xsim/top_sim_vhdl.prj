@@ -1,0 +1,9 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../ImgMatrix.srcs/sources_1/new/ImgMatrix.vhd" \
+"../../../../ImgMatrix.srcs/sources_1/imports/03_-_UpDownSyncCounter/ff_d.vhd" \
+"../../../../ImgMatrix.srcs/sources_1/new/reg_matrix.vhd" \
+"../../../../ImgMatrix.srcs/sim_1/imports/04_-_ImgMatrix/top_sim.vhd" \
+
+# Do not sort compile order
+nosort
