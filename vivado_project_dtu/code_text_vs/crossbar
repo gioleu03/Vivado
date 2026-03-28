@@ -7,16 +7,122 @@ use UNISIM.VComponents.all;
 entity crossbar is
     Port (
         clk: in std_logic;
-        data_in_n: in std_logic_vector(8 downto 0) of std_logic_vector(3 downto 0);
-        dst_port_n: in std_logic_vector(3 downto 0);
-        data_out_n:  out std_logic_vector(8 downto 0) of std_logic_vector(3 downto 0);
-        tx_ctrl_n: in std_logic_vector(3 downto 0);
+        data_in: in std_logic_vector(8 downto 0) of std_logic_vector(3 downto 0);
+        dst_port: in std_logic_vector(3 downto 0) of std_logic_vector(3 downto 0);
+        data_out:  out std_logic_vector(7 downto 0) of std_logic_vector(3 downto 0);
+        tx_ctrl: out std_logic_vector(3 downto 0) of std_logic_vector(3 downto 0);
      );
 end crossbar;
 
 architecture Behavioral of crossbar is
 
+    signal buff: std_logic_vector(7 downto 0) of std_logic_vector(3 downto 0);
+    --signal send_output: std_logic_vector(3 downto 0);
+                               
+
+
 begin
 
+    process(clk)
+    variable send_output: std_logic_vector(3 downto 0);
+    begin
+        if rising_edge(clk) then
+                case dst_port[0] is
+                    when "0010" => 
+                    buff[0] <= data_in[7 downto 0][1];
+                    tx_ctrl[0] <= '1';
+
+                    when "0100" => 
+                    buff[0] <= data_in[7 downto 0][2];
+                    tx_ctrl[0] <= '1';
+
+                    when "1000" =>
+                    buff[0] <= data_in[7 downto 0][3];
+                    tx_ctrl[0] <= '1';
+
+                    when others =>
+                    buff[0]  <= "00000000";
+                    tx_ctrl[0] <= '0';
+                end case;
+
+                send_output[0] := data_in[8][0];
+                if send_output[0] = '1';
+                    data_out[0] <= buff[0];
+                end if;
+
+
+                case dst_port[1] is
+                    when "0001" => 
+                    buff[1] <= data_in[7 downto 0][0];
+                    tx_ctrl[1] <= '1';
+
+                    when "0100" => 
+                    buff[1] <= data_in[7 downto 0][2];
+                    tx_ctrl[1] <= '1';
+
+                    when "1000" =>
+                    buff[1] <= data_in[7 downto 0][3];
+                    tx_ctrl[1] <= '1';
+
+                    when others =>
+                    buff[1]  <= "00000000";
+                    tx_ctrl[1] <= '0';
+                end case;
+
+                send_output[1] := data_in[8][1];
+                if send_output[1] = '1';
+                    data_out[1] <= buff[1];
+                end if;
+
+
+                case dst_port[2] is
+                    when "0001" => 
+                    buff[2] <= data_in[7 downto 0][0];
+                    tx_ctrl[2] <= '1';
+
+                    when "0010" => 
+                    buff[2] <= data_in[7 downto 0][1];
+                    tx_ctrl[2] <= '1';
+
+                    when "1000" =>
+                    buff[2] <= data_in[7 downto 0][3];
+                    tx_ctrl[2] <= '1';
+
+                    when others =>
+                    buff[2]  <= "00000000";
+                    tx_ctrl[2] <= '0';
+                end case;
+
+                send_output[2] := data_in[8][2];
+                if send_output[2] = '1';
+                    data_out[2] <= buff[2];
+                end if;
+
+                case dst_port[3] is
+                    when "0001" => 
+                    buff[3] <= data_in[7 downto 0][0];
+                    tx_ctrl[3] <= '1';
+
+                    when "0010" => 
+                    buff[3] <= data_in[7 downto 0][1];
+                    tx_ctrl[3] <= '1';
+
+                    when "0100" =>
+                    buff[3] <= data_in[7 downto 0][2];
+                    tx_ctrl[3] <= '1';
+
+                    when others =>
+                    buff[3]  <= "00000000";
+                    tx_ctrl[3] <= '0';
+                end case;
+
+                send_output[3] := data_in[8][3];
+                if send_output[3] = '1';
+                    data_out[3] <= buff[3];
+                end if;
+
+                -- does the buffer have the same length of data_out? isn't it supposed to be super long to store multiple bytes?
+        end if;
+    end process; 
 
 end Behavioral;
