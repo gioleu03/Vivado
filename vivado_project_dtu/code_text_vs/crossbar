@@ -1,0 +1,22 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+library UNISIM;
+use UNISIM.VComponents.all;
+
+entity crossbar is
+    Port (
+        clk: in std_logic;
+        data_in_n: in std_logic_vector(8 downto 0) of std_logic_vector(3 downto 0);
+        dst_port_n: in std_logic_vector(3 downto 0);
+        data_out_n:  out std_logic_vector(8 downto 0) of std_logic_vector(3 downto 0);
+        tx_ctrl_n: in std_logic_vector(3 downto 0);
+     );
+end crossbar;
+
+architecture Behavioral of crossbar is
+
+begin
+
+
+end Behavioral;
