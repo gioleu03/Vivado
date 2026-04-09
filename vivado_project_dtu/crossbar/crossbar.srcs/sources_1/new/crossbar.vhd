@@ -99,7 +99,7 @@ begin
 
         Fair_queuing_manager: for j in 0 to 3 generate
         process(clk)
-        variable current_port : integer range 0 to 3;
+        variable current_port : integer range 0 to 3 := 0 ;
         begin
             if rising_edge(clk) then
                 case state(j) is
@@ -123,3 +123,6 @@ begin
         end process;
     end generate;
 end Behavioral;
+
+-- j is the output port, fixed per instance
+-- current_port is the input port, dynamic
