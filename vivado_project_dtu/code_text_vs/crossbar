@@ -4,125 +4,251 @@ use IEEE.NUMERIC_STD.ALL;
 library UNISIM;
 use UNISIM.VComponents.all;
 
+package switch_types is
+    -- 9 bits: 8 bits data + 1 bit end-of-frame flag [cite: 32, 72]
+    type ninebit_array is array (0 to 3) of std_logic_vector(8 downto 0);
+    type eightbit_array is array (0 to 3) of std_logic_vector(7 downto 0);
+    type dst_sel_array is array (0 to 3) of std_logic_vector(3 downto 0);
+    type occu_array is array (0 to 3) of std_logic_vector(4 downto 0);
+end package;
+
 entity crossbar is
     Port (
         clk: in std_logic;
-        data_in: in std_logic_vector(8 downto 0) of std_logic_vector(3 downto 0);
-        dst_port: in std_logic_vector(3 downto 0) of std_logic_vector(3 downto 0);
-        data_out:  out std_logic_vector(7 downto 0) of std_logic_vector(3 downto 0);
-        tx_ctrl: out std_logic_vector(3 downto 0) of std_logic_vector(3 downto 0);
+        data_in: in ninebit_array;
+        dst_port: in dst_sel_array;
+        data_out:  out eightbit_array;
+        tx_ctrl: out std_logic_vector(3 downto 0);
      );
 end crossbar;
 
 architecture Behavioral of crossbar is
 
-    signal buff: std_logic_vector(7 downto 0) of std_logic_vector(3 downto 0);
-    --signal send_output: std_logic_vector(3 downto 0);
+    signal fifo_dout  : ninebit_array;
+    signal fifo_empty : std_logic_vector(3 downto 0);
+    signal rd_en      : std_logic_vector(3 downto 0);
+    signal occuin, occuout: occu_array;
+    signal selected_input :  integer range 0 to 3 := 0;
                                
+begin
 
+        Gen_fifo: for i in 0 to 3 generate
+            buff_inst: async_fifo is
+                port (  
+                    reset          => reset,
+                    wclk           => clk, 
+                    rclk           => clk, 
+                    write_enable   => '1' when dst_port(i) /= "0000" else '0',
+                    read_enable    => rd_en(i),
+                    fifo_occu_in   => occuin(i),
+                    fifo_occu_out  => occuout(i),
+                    write_data_in  => data_in(i), 
+                    read_data_out  => fifo_dout(i)
+                ); 
+            end async_fifo; 
+        end generate;
+
+        Fair_queuing_manager: for j in 0 to 3 generate
+        process(clk)
+        variable openport_number(j) : integer range 0 to 3 := 0;
+        begin
+            if rising_edge(clk) then
+                if reset = '1' then
+                    state(j) <= IDLE;
+                else
+                    case state is
+
+                        when IDLE =>
+                            if (not fifo_empty(openport_number(j))) and (dst_port(openport_number) = std_logic_vector(to_unsigned(j, 4))) then
+                                selected_input <= openport_number; -- found a packet!
+                                state <= SENDING;
+                            else 
+                                openport_number = (openport_number + 1) mod 4;
+                            end if;
+
+                        when SENDING =>
+                            rd_en(selected_input) <= '1';
+                            data_out(selected_input) <= fifo_dout(selected_input)(7 downto 0);
+                            tx_ctrl(selected_input) <= '1';
+                            if fifo_dout(selected_input)(8) = '1' then
+                                rd_en(selected_input) <= '0';
+                                state <= IDLE;
+                                openport_number = (openport_number + 1) mod 4;
+                            end if;
+                    end case;
+                end if;
+            end if;
+       -- process_output: process(clk)
+        -- begin
+        --     if rising_edge(clk) then
+        --         for i in 0 to 3 loop
+        --             if dst_port /= "0000" then
+        --                 rd_en(i) <= '1';
+        --                 data_out(i) <= fifo_dout(i)(7 downto 0);
+        --                 tx_ctrl(i) <= '1';
+        --                 if fifo_dout(8)(i) = '1' then
+        --                     rd_en(i) <= '0';
+        --                 end if;
+        --             else 
+        --                 rd_en(i) <= '0';
+        --                 tx_ctrl(i) <= '0';
+        --             end if;
+        --         end loop;
+        --     end if;
+     --   end process;
+
+end Behavioral;
+
+-- i need to deal with the fact that if the entire packet doesn't fit in the buffer i have to entirely drop it DONE IN THE FIFO
+-- i need full, empty and packet size signal I THINK I HAVE IT IN THE FIFO
+
+-- We need to fix the for. i think all the actions have to happen in parallel and implementing the fair queuing for each port
+
+
+
+-- FIFO CODE 
+-- it has the correction of the pointer if the packet is not complete
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity async_fifo is
+    Generic(
+         FIFO_WIDTH : integer := 9; -- Updated to 9 to include EOF bit [cite: 32]
+         FIFO_DEPTH : integer := 32
+     ); 
+    port (  
+        reset          : in std_logic; 
+        wclk           : in std_logic; 
+        rclk           : in std_logic; 
+        write_enable   : in std_logic; 
+        read_enable    : in std_logic; 
+        fifo_occu_in   : out std_logic_vector(4 downto 0); 
+        fifo_occu_out  : out std_logic_vector(4 downto 0); 
+        write_data_in  : in std_logic_vector(8 downto 0); -- 8-bit data + 1-bit EOF [cite: 32]
+        read_data_out  : out std_logic_vector(8 downto 0) 
+    ); 
+end async_fifo; 
+
+architecture Behavioral of async_FIFO is
+
+    COMPONENT blk_mem_gen_0
+      PORT (
+        clka : IN STD_LOGIC;
+        ena : IN STD_LOGIC;
+        wea : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        addra : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        dina : IN STD_LOGIC_VECTOR(8 downto 0);
+        douta : OUT STD_LOGIC_VECTOR(8 downto 0);
+        clkb : IN STD_LOGIC;
+        enb : IN STD_LOGIC;
+        web : IN STD_LOGIC_VECTOR(0 DOWNTO 0);
+        addrb : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        dinb : IN STD_LOGIC_VECTOR(8 downto 0);
+        doutb : OUT STD_LOGIC_VECTOR(8 downto 0)
+      );
+    END COMPONENT;
+
+    -- Pointers
+    signal wptr : std_logic_vector(4 downto 0) := (others => '0'); -- Current write address
+    signal wptr_commit : std_logic_vector(4 downto 0) := (others => '0'); -- Validated write address
+    signal rptr : std_logic_vector(4 downto 0) := (others => '0');
+    
+    -- Sync signals
+    signal wptr_commit_s : std_logic_vector(4 downto 0) := (others => '0');
+    signal wptr_commit_reg : std_logic_vector(4 downto 0) := (others => '0');
+    signal rptr_s : std_logic_vector(4 downto 0) := (others => '0');
+    signal rptr_reg : std_logic_vector(4 downto 0) := (others => '0');
+
+    signal empty, full : std_logic;
+    signal wptr_checkpoint : std_logic_vector(4 downto 0) := (others => '0');
+    signal is_writing_frame : std_logic := '0';
 
 begin
 
-    process(clk)
-    variable send_output: std_logic_vector(3 downto 0);
-    begin
-        if rising_edge(clk) then
-                case dst_port[0] is
-                    when "0010" => 
-                    buff[0] <= data_in[7 downto 0][1];
-                    tx_ctrl[0] <= '1';
-
-                    when "0100" => 
-                    buff[0] <= data_in[7 downto 0][2];
-                    tx_ctrl[0] <= '1';
-
-                    when "1000" =>
-                    buff[0] <= data_in[7 downto 0][3];
-                    tx_ctrl[0] <= '1';
-
-                    when others =>
-                    buff[0]  <= "00000000";
-                    tx_ctrl[0] <= '0';
-                end case;
-
-                send_output[0] := data_in[8][0];
-                if send_output[0] = '1';
-                    data_out[0] <= buff[0];
-                end if;
-
-
-                case dst_port[1] is
-                    when "0001" => 
-                    buff[1] <= data_in[7 downto 0][0];
-                    tx_ctrl[1] <= '1';
-
-                    when "0100" => 
-                    buff[1] <= data_in[7 downto 0][2];
-                    tx_ctrl[1] <= '1';
-
-                    when "1000" =>
-                    buff[1] <= data_in[7 downto 0][3];
-                    tx_ctrl[1] <= '1';
-
-                    when others =>
-                    buff[1]  <= "00000000";
-                    tx_ctrl[1] <= '0';
-                end case;
-
-                send_output[1] := data_in[8][1];
-                if send_output[1] = '1';
-                    data_out[1] <= buff[1];
-                end if;
-
-
-                case dst_port[2] is
-                    when "0001" => 
-                    buff[2] <= data_in[7 downto 0][0];
-                    tx_ctrl[2] <= '1';
-
-                    when "0010" => 
-                    buff[2] <= data_in[7 downto 0][1];
-                    tx_ctrl[2] <= '1';
-
-                    when "1000" =>
-                    buff[2] <= data_in[7 downto 0][3];
-                    tx_ctrl[2] <= '1';
-
-                    when others =>
-                    buff[2]  <= "00000000";
-                    tx_ctrl[2] <= '0';
-                end case;
-
-                send_output[2] := data_in[8][2];
-                if send_output[2] = '1';
-                    data_out[2] <= buff[2];
-                end if;
-
-                case dst_port[3] is
-                    when "0001" => 
-                    buff[3] <= data_in[7 downto 0][0];
-                    tx_ctrl[3] <= '1';
-
-                    when "0010" => 
-                    buff[3] <= data_in[7 downto 0][1];
-                    tx_ctrl[3] <= '1';
-
-                    when "0100" =>
-                    buff[3] <= data_in[7 downto 0][2];
-                    tx_ctrl[3] <= '1';
-
-                    when others =>
-                    buff[3]  <= "00000000";
-                    tx_ctrl[3] <= '0';
-                end case;
-
-                send_output[3] := data_in[8][3];
-                if send_output[3] = '1';
-                    data_out[3] <= buff[3];
-                end if;
-
-                -- does the buffer have the same length of data_out? isn't it supposed to be super long to store multiple bytes?
+    RAM : blk_mem_gen_0
+        PORT MAP (
+            clka  => wclk,
+            ena   => write_enable,
+            wea(0)=> write_enable,
+            addra => wptr(3 downto 0), 
+            dina  => write_data_in,
+            
+            clkb  => rclk,
+            enb   => read_enable,
+            web(0)=> '0',
+            addrb => rptr(3 downto 0),
+            dinb  => (others => '0'),
+            doutb => read_data_out
+        );
+    
+    -- Sincronizzazione rptr -> wclk domain
+    process(wclk) begin
+        if rising_edge(wclk) then
+            rptr_reg <= rptr; 
+            rptr_s <= rptr_reg; 
         end if;
-    end process; 
+    end process;
+
+    -- Sincronizzazione wptr_commit -> rclk domain
+    process(rclk) begin
+        if rising_edge(rclk) then
+            wptr_commit_reg <= wptr_commit; 
+            wptr_commit_s <= wptr_commit_reg; 
+        end if;
+    end process;
+    
+    -- Status signals
+    -- Full uses the live wptr to prevent overwriting
+    full  <= '1' when (wptr(4) /= rptr_s(4) and wptr(3 downto 0) = rptr_s(3 downto 0)) else '0';
+    -- Empty uses wptr_commit_s so reader only sees finished packets 
+    empty <= '1' when (rptr = wptr_commit_s) else '0';
+    
+    -- WRITE PROCESS (wclk domain)
+    process(wclk, reset) begin
+        if reset = '1' then
+            wptr <= (others => '0');
+            wptr_commit <= (others => '0');
+            wptr_checkpoint <= (others => '0');
+            is_writing_frame <= '0';
+        elsif rising_edge(wclk) then
+            if write_enable = '1' then
+                -- Store start of packet for potential rollback
+                if is_writing_frame = '0' then
+                    wptr_checkpoint <= wptr;
+                    is_writing_frame <= '1';
+                end if;
+
+                if full = '0' then
+                    wptr <= std_logic_vector(unsigned(wptr) + 1);
+                    
+                    -- COMMIT: Packet is valid if EOF bit (8) is received [cite: 32, 60]
+                    if write_data_in(8) = '1' then
+                        wptr_commit <= std_logic_vector(unsigned(wptr) + 1);
+                        is_writing_frame <= '0';
+                    end if;
+                else
+                    -- ROLLBACK: Overflow occurred, reset wptr to start of this packet
+                    wptr <= wptr_checkpoint;
+                    is_writing_frame <= '0';
+                end if;
+            end if;
+        end if;
+    end process;
+
+    -- READ PROCESS (rclk domain)
+    process(rclk, reset) begin
+        if reset = '1' then
+            rptr <= (others => '0');
+        elsif rising_edge(rclk) then
+            if read_enable = '1' and empty = '0' then
+                rptr <= std_logic_vector(unsigned(rptr) + 1);
+            end if;
+        end if;
+    end process;
+
+    -- Output signals
+    fifo_occu_in <= wptr;
+    fifo_occu_out <= rptr;
 
 end Behavioral;
