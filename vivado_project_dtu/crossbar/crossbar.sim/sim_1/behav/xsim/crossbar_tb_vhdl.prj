@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../crossbar.srcs/sources_1/new/crossbar.vhd" \
+"../../../../crossbar.srcs/sim_1/new/crossbar_tb.vhd" \
+
+# Do not sort compile order
+nosort

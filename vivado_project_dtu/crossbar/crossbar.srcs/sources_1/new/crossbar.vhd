@@ -63,6 +63,8 @@ architecture Behavioral of crossbar is
     signal selected_input : input_sel;
     signal fifo_we_vector : std_logic_vector(3 downto 0);   
     signal state: state_array;
+    signal current_port : input_sel;
+    
     
     component newfifo is
         port (  
@@ -96,19 +98,56 @@ begin
                     write_data_in  => data_in(i), 
                     read_data_out  => fifo_dout(i)
                 ); 
+                
+            --fifo_empty(i) <= '1' when occuout(i) = "00000" else '0';
         end generate;
 
         Fair_queuing_manager: for j in 0 to 3 generate
         process(clk, reset)
-        variable current_port : integer range 0 to 3 := 0 ;
         -- Inside your process
-        type deficit_array is array (0 to 3) of integer range 0 to 1526; -- Adjust range as needed
-        variable deficit, credit : deficit_array := (others => 0);
-        constant QUANTUM : integer := 1526; -- The "credit" added each round (in bytes)
-        constant SIZE : integer := 600;
+--        type deficit_array is array (0 to 3) of integer range 0 to 1526; -- Adjust range as needed
+--        variable deficit, credit : deficit_array := (others => 0);
+--        constant QUANTUM : integer := 1526; -- The "credit" added each round (in bytes)
+--        constant SIZE : integer := 600;
         begin
-            if rising_edge(clk) then
-                case state(j) is
+            if reset = '1' then
+                tx_ctrl(j) <= '0';
+                current_port(j) <= 0;
+                state(j) <= IDLE;
+                rd_en(j) <= '0';
+                data_out(j) <= (others => '0');
+                
+                fifo_we_vector(j) <= '0'; --check
+            elsif rising_edge(clk) then        
+                    case state(j) is
+                        when IDLE =>
+                            if (occuout(current_port(j))(j) = '0') and (dst_port(current_port(j))(j) = '1') then
+                                selected_input(j) <= current_port(j); -- found a packet!
+                                state(j) <= SENDING;
+                            else 
+                                current_port(j) <= (current_port(j) + 1) mod 4;
+                                rd_en(j) <= '0'; -- maybe
+                            end if;
+                            
+    
+                        when SENDING =>
+                            rd_en(j) <= '1';
+                            data_out(j) <= fifo_dout(selected_input(j))(7 downto 0);
+                            tx_ctrl(j) <= '1'; --connected to outputport
+                            if fifo_dout(selected_input(j))(8) = '1' then
+                                current_port(j) <= (current_port(j) + 1) mod 4;
+                                state(j) <= IDLE;
+                            end if;
+                    end case;
+            end if;
+        end process;
+    end generate;
+end Behavioral;
+
+-- j is the output port, fixed per instance
+-- current_port is the input port, dynamic
+
+--                 case state(j) is
 --                        when IDLE =>
 --                            if (fifo_empty(current_port) = '0') and (dst_port(current_port)(j) = '1') then
 --                                deficit(j) := QUANTUM;
@@ -132,29 +171,4 @@ begin
 --                                data_out(j) <= fifo_dout(selected_input(j))(7 downto 0);
 --                                tx_ctrl(selected_input(j)) <= '1';
 --                           end if;
---                    end case;           
---                case state(j) is
-                    when IDLE =>
-                        if (fifo_empty(current_port) = '0') and (dst_port(current_port)(j) = '1') then
-                            selected_input(j) <= current_port; -- found a packet!
-                            state(j) <= SENDING;
-                        else 
-                            current_port := (current_port + 1) mod 4;
-                        end if;
-                        
-
-                    when SENDING =>
-                        data_out(j) <= fifo_dout(selected_input(j))(7 downto 0);
-                        tx_ctrl(selected_input(j)) <= '1';
-                        if fifo_dout(selected_input(j))(8) = '1' then
-                            state(j) <= IDLE;
-                            current_port := (current_port + 1) mod 4;
-                        end if;
-                end case;
-            end if;
-        end process;
-    end generate;
-end Behavioral;
-
--- j is the output port, fixed per instance
--- current_port is the input port, dynamic
+--                    end case;   
