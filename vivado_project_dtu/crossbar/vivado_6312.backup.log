@@ -1,0 +1,130 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Wed Apr 15 10:20:39 2026
+# Process ID: 6312
+# Current directory: C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent3984 C:\Users\giorg\Desktop\Github\Vivado\vivado_project_dtu\crossbar\crossbar.xpr
+# Log file: C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/vivado.log
+# Journal file: C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2018.3/data/ip'.
+open_project: Time (s): cpu = 00:00:25 ; elapsed = 00:00:12 . Memory (MB): peak = 652.730 ; gain = 71.871
+update_compile_order -fileset sources_1
+exsynth_design -rtl -name rtl_1
+Command: synth_design -rtl -name rtl_1
+Starting synth_design
+Using part: xc7a12ticsg325-1L
+Top: crossbar
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 737.516 ; gain = 60.430
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'crossbar' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:57]
+INFO: [Synth 8-3491] module 'newfifo' declared at 'C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:26' bound to instance 'buff_inst' of component 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+INFO: [Synth 8-638] synthesizing module 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:44]
+	Parameter FIFO_WIDTH bound to: 9 - type: integer 
+	Parameter FIFO_DEPTH bound to: 32 - type: integer 
+INFO: [Synth 8-637] synthesizing blackbox instance 'RAM' of component 'blk_mem_gen_0' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:80]
+INFO: [Synth 8-256] done synthesizing module 'newfifo' (1#1) [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:44]
+INFO: [Synth 8-3491] module 'newfifo' declared at 'C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:26' bound to instance 'buff_inst' of component 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+INFO: [Synth 8-3491] module 'newfifo' declared at 'C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:26' bound to instance 'buff_inst' of component 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+INFO: [Synth 8-3491] module 'newfifo' declared at 'C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:26' bound to instance 'buff_inst' of component 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+WARNING: [Synth 8-3848] Net fifo_empty in module/entity crossbar does not have driver. [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:60]
+WARNING: [Synth 8-3848] Net rd_en in module/entity crossbar does not have driver. [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:61]
+INFO: [Synth 8-256] done synthesizing module 'crossbar' (2#1) [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:57]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 794.785 ; gain = 117.699
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+WARNING: [Synth 8-3295] tying undriven pin Gen_fifo[0].buff_inst:read_enable to constant 0 [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+WARNING: [Synth 8-3295] tying undriven pin Gen_fifo[1].buff_inst:read_enable to constant 0 [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+WARNING: [Synth 8-3295] tying undriven pin Gen_fifo[2].buff_inst:read_enable to constant 0 [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+WARNING: [Synth 8-3295] tying undriven pin Gen_fifo[3].buff_inst:read_enable to constant 0 [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 794.785 ; gain = 117.699
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 794.785 ; gain = 117.699
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a12ticsg325-1L
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1089.102 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:14 . Memory (MB): peak = 1136.184 ; gain = 459.098
+13 Infos, 6 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:14 . Memory (MB): peak = 1136.184 ; gain = 459.098
+refresh_design
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1141.262 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'crossbar' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:57]
+INFO: [Synth 8-3491] module 'newfifo' declared at 'C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:26' bound to instance 'buff_inst' of component 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+INFO: [Synth 8-638] synthesizing module 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:44]
+	Parameter FIFO_WIDTH bound to: 9 - type: integer 
+	Parameter FIFO_DEPTH bound to: 32 - type: integer 
+INFO: [Synth 8-637] synthesizing blackbox instance 'RAM' of component 'blk_mem_gen_0' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:80]
+INFO: [Synth 8-256] done synthesizing module 'newfifo' (1#1) [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:44]
+INFO: [Synth 8-3491] module 'newfifo' declared at 'C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:26' bound to instance 'buff_inst' of component 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+INFO: [Synth 8-3491] module 'newfifo' declared at 'C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:26' bound to instance 'buff_inst' of component 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+INFO: [Synth 8-3491] module 'newfifo' declared at 'C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/newfifo.vhd:26' bound to instance 'buff_inst' of component 'newfifo' [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+WARNING: [Synth 8-3848] Net fifo_empty in module/entity crossbar does not have driver. [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:60]
+WARNING: [Synth 8-3848] Net rd_en in module/entity crossbar does not have driver. [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:61]
+INFO: [Synth 8-256] done synthesizing module 'crossbar' (2#1) [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:57]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1152.449 ; gain = 11.188
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+WARNING: [Synth 8-3295] tying undriven pin Gen_fifo[0].buff_inst:read_enable to constant 0 [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+WARNING: [Synth 8-3295] tying undriven pin Gen_fifo[1].buff_inst:read_enable to constant 0 [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+WARNING: [Synth 8-3295] tying undriven pin Gen_fifo[2].buff_inst:read_enable to constant 0 [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+WARNING: [Synth 8-3295] tying undriven pin Gen_fifo[3].buff_inst:read_enable to constant 0 [C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd:87]
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1152.449 ; gain = 11.188
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1152.449 ; gain = 11.188
+---------------------------------------------------------------------------------
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+refresh_design: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 1172.262 ; gain = 31.000
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 15 17:03:58 2026...

@@ -46,6 +46,7 @@ use work.switch_types.all;
 entity crossbar is
 Port (
         clk      : in std_logic;
+        reset    : in std_logic;
         data_in  : in ninebit_array;
         dst_port : in sel_array;
         data_out : out eightbit_array;
@@ -65,7 +66,7 @@ architecture Behavioral of crossbar is
     
     component newfifo is
         port (  
-            --reset          : in std_logic; 
+            reset          : in std_logic; 
             wclk           : in std_logic; 
             rclk           : in std_logic; 
             write_enable   : in std_logic; 
@@ -85,7 +86,7 @@ begin
         Gen_fifo: for i in 0 to 3 generate
             buff_inst: newfifo
                 port map(  
-                    --reset          => open,
+                    reset          => reset,
                     wclk           => clk, 
                     rclk           => clk, 
                     write_enable   => fifo_we_vector(i),
@@ -98,18 +99,49 @@ begin
         end generate;
 
         Fair_queuing_manager: for j in 0 to 3 generate
-        process(clk)
+        process(clk, reset)
         variable current_port : integer range 0 to 3 := 0 ;
+        -- Inside your process
+        type deficit_array is array (0 to 3) of integer range 0 to 1526; -- Adjust range as needed
+        variable deficit, credit : deficit_array := (others => 0);
+        constant QUANTUM : integer := 1526; -- The "credit" added each round (in bytes)
+        constant SIZE : integer := 600;
         begin
             if rising_edge(clk) then
                 case state(j) is
+--                        when IDLE =>
+--                            if (fifo_empty(current_port) = '0') and (dst_port(current_port)(j) = '1') then
+--                                deficit(j) := QUANTUM;
+--                                selected_input(j) <= current_port; -- found a packet!
+--                                state(j) <= SENDING;
+--                            else 
+--                                current_port := (current_port + 1) mod 4;
+--                                deficit(j) := 0;
+--                            end if;
+                            
+--    -- wainting state with counter 
+--                        when SENDING =>
+--                            deficit(j) := deficit(j) - 1;
+--                            if fifo_dout(selected_input(j))(8) = '1' then
+--                                if deficit(j) < SIZE then
+--                                    state(j) <= IDLE;
+--                                    current_port := (current_port + 1) mod 4;
+--                                end if;
+--                            end if;
+--                            if deficit(j) > SIZE then
+--                                data_out(j) <= fifo_dout(selected_input(j))(7 downto 0);
+--                                tx_ctrl(selected_input(j)) <= '1';
+--                           end if;
+--                    end case;           
+--                case state(j) is
                     when IDLE =>
-                        if (fifo_empty(current_port) = '0') and (dst_port(current_port) = std_logic_vector(to_unsigned(j, 4))) then
+                        if (fifo_empty(current_port) = '0') and (dst_port(current_port)(j) = '1') then
                             selected_input(j) <= current_port; -- found a packet!
                             state(j) <= SENDING;
                         else 
                             current_port := (current_port + 1) mod 4;
                         end if;
+                        
 
                     when SENDING =>
                         data_out(j) <= fifo_dout(selected_input(j))(7 downto 0);
