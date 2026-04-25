@@ -18,7 +18,6 @@
 -- 
 ----------------------------------------------------------------------------------
 
-
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
@@ -94,7 +93,7 @@ RAM : blk_mem_gen_0
 
     process(rclk) begin
         if rising_edge(rclk) then
-            wptr_reg <= wptr; 
+            wptr_reg <= wptr_saved; 
             wptr_s <= wptr_reg; -- wptr sincronizzato in rclk
         end if;
     end process;
@@ -135,6 +134,6 @@ RAM : blk_mem_gen_0
 
     -- Assegnazione segnali esterni
     fifo_occu_in <= wptr;
-    fifo_occu_out <= rptr;
+    fifo_occu_out <= std_logic_vector(unsigned(wptr_s) - unsigned(rptr));
 
 end Behavioral;

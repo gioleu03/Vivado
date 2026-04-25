@@ -51,7 +51,7 @@ architecture sim of crossbar_tb is
             data_in  : in ninebit_array;
             dst_port : in sel_array;
             data_out : out eightbit_array;
-            tx_ctrl  : out std_logic_vector(3 downto 0)
+            tx_ctrl  : out std_logic_vector(0 to 3)
         );
     end component;
 
@@ -61,7 +61,7 @@ architecture sim of crossbar_tb is
     signal data_in  : ninebit_array := (others => (others => '0'));
     signal dst_port : sel_array := (others => (others => '0'));
     signal data_out : eightbit_array;
-    signal tx_ctrl  : std_logic_vector(3 downto 0);
+    signal tx_ctrl  : std_logic_vector(0 to 3);
 
     -- Clock Period Definition
     constant CLK_PERIOD : time := 10 ns;
@@ -93,7 +93,7 @@ begin
     begin		
         -- Global Reset
         reset <= '1';
-        wait for 20 ns;
+        wait for 40 ns;
         reset <= '0';
         wait for 20 ns;
 
