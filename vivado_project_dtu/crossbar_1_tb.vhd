@@ -87,7 +87,7 @@ begin
         wait for 500 ns;
         
         report "Simulazione completata con successo!";
-        std.env.stop; -- Comando VHDL-2008 per fermare la simulazione
+        --std.env.stop; -- Comando VHDL-2008 per fermare la simulazione
         wait;
     end process;
 
