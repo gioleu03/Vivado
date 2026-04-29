@@ -12,7 +12,7 @@ package switch_types is
     type state_array is array (0 to 3) of state_type;
     type ninebit_matrix is array (0 to 3, 0 to 3) of std_logic_vector(8 downto 0);
     type occu_matrix is array (0 to 3, 0 to 3) of std_logic_vector(4 downto 0);
-    type matrix_en_type is array (0 to 3) of std_logic_vector(0 to 3);
+    type matrix_en_type is array (0 to 3) of std_logic_vector(3 downto 0);
 end package;
 
 library IEEE;
@@ -28,12 +28,17 @@ Port (
         data_in  : in ninebit_array;
         dst_port : in sel_array;
         data_out : out eightbit_array;
-        tx_ctrl  : out std_logic_vector(0 to 3)  
+        tx_ctrl  : out std_logic_vector(3 downto 0)  
      );
 end crossbar_1;
 
 architecture Behavioral of crossbar_1 is
     signal matrix_rd_en   : matrix_en_type := (others => (others => '0'));
+    signal matrix_rd_en1   : matrix_en_type := (others => (others => '0'));
+    signal matrix_read_en0 : std_logic_vector (3 downto 0);
+    signal matrix_read_en1 : std_logic_vector (3 downto 0);
+    signal matrix_read_en2 : std_logic_vector (3 downto 0);
+    signal matrix_read_en3 : std_logic_vector (3 downto 0);
     signal matrix_occu      : occu_matrix;
     signal fifo_matrix_out : ninebit_matrix;
     signal selected_input  : input_sel := (others => 0);
@@ -68,7 +73,7 @@ begin
                     wclk           => clk, 
                     rclk           => clk, 
                     write_enable   => matrix_we(i)(j),    -- FIXED indexing
-                    read_enable    => matrix_rd_en(i)(j), -- FIXED indexing
+                    read_enable    => matrix_rd_en1(i)(j), -- FIXED indexing
                     write_data_in  => data_in(i),
                     read_data_out  => fifo_matrix_out(i, j),
                     fifo_occu_in   => open, 
@@ -102,7 +107,7 @@ begin
 			--matrix_rd_en(current_port(j))(j) <= '1'; -- FIXED indexing
                             state(0) <= WAIT_DATA;
                         else
-                            matrix_rd_en(current_port(0))(0) <= '0'; -- FIXED indexing
+                          --  matrix_rd_en(current_port(0))(0) <= '0'; -- FIXED indexing
                             current_port(0) <= (current_port(0) + 1) mod 4;
                         end if;
 
@@ -116,9 +121,9 @@ begin
                         if fifo_matrix_out(selected_input(0), 0)(8) = '1' then -- EOF
                             state(0) <= IDLE;
                             current_port(0) <= (selected_input(0) + 1) mod 4;
-                           matrix_rd_en(selected_input(0))(0) <= '0'; -- FIXED indexing
+                          -- matrix_rd_en(selected_input(0))(0) <= '0'; -- FIXED indexing
                         else
-                           matrix_rd_en(selected_input(0))(0) <= '1'; -- FIXED indexing
+                           --matrix_rd_en(selected_input(0))(0) <= '1'; -- FIXED indexing
                         end if;
                     when others =>
                         state(0) <= IDLE;
@@ -140,7 +145,7 @@ process(clk, reset)
             elsif rising_edge(clk) then
                 -- Default
                 for i in 0 to 3 loop 
-                    matrix_rd_en(i)(1) <= '0'; -- FIXED indexing
+                    --matrix_rd_en(i)(1) <= '0'; -- FIXED indexing
                 end loop;
                 tx_ctrl(1) <= '0';
 
@@ -175,6 +180,10 @@ process(clk, reset)
             end if;
         end process;
 
+matrix_rd_en1(0)(2) <= matrix_read_en2(0);
+matrix_rd_en1(1)(2) <= matrix_read_en2(1);
+matrix_rd_en1(2)(2) <= matrix_read_en2(2);
+matrix_rd_en1(3)(2) <= matrix_read_en2(3);
 process(clk, reset)
         begin
             if reset = '1' then
@@ -183,12 +192,12 @@ process(clk, reset)
                 tx_ctrl(2) <= '0';
                 data_out(2) <= (others => '0');
                 for i in 0 to 3 loop 
-                   matrix_rd_en(i)(2) <= '0'; -- FIXED indexing
+                   matrix_read_en2(i) <= '0'; -- FIXED indexing
                 end loop;
             elsif rising_edge(clk) then
                 -- Default
                 for i in 0 to 3 loop 
-                    matrix_rd_en(i)(2) <= '0'; -- FIXED indexing
+                   -- matrix_rd_en(i)(2) <= '0'; -- FIXED indexing
                 end loop;
                 tx_ctrl(2) <= '0';
 
@@ -199,7 +208,7 @@ process(clk, reset)
 			--matrix_rd_en(current_port(j))(j) <= '1'; -- FIXED indexing
                             state(2) <= WAIT_DATA;
                         else
-                            matrix_rd_en(current_port(2))(2) <= '0'; -- FIXED indexing
+                            --matrix_rd_en(current_port(2))(2) <= '0'; -- FIXED indexing
                             current_port(2) <= (current_port(2) + 1) mod 4;
                         end if;
 
@@ -213,9 +222,9 @@ process(clk, reset)
                         if fifo_matrix_out(selected_input(2), 2)(8) = '1' then -- EOF
                             state(2) <= IDLE;
                             current_port(2) <= (selected_input(2) + 1) mod 4;
-                           matrix_rd_en(selected_input(2))(2) <= '0'; -- FIXED indexing
+                           matrix_read_en2(selected_input(2)) <= '0'; -- FIXED indexing
                         else
-                           matrix_rd_en(selected_input(2))(2) <= '1'; -- FIXED indexing
+                           matrix_read_en2(selected_input(2)) <= '1'; -- FIXED indexing
                         end if;
                     when others =>
                         state(2) <= IDLE;

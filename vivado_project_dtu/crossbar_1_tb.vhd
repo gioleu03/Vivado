@@ -10,14 +10,14 @@ end crossbar_tb;
 architecture sim of crossbar_tb is
 
     -- Component Declaration
-    component crossbar
+    component crossbar_1
         Port (
             clk      : in std_logic;
             reset    : in std_logic;
             data_in  : in ninebit_array;
             dst_port : in sel_array;
             data_out : out eightbit_array;
-            tx_ctrl  : out std_logic_vector(0 to 3)
+            tx_ctrl  : out std_logic_vector(3 downto 0)
         );
     end component;
 
@@ -27,14 +27,14 @@ architecture sim of crossbar_tb is
     signal data_in  : ninebit_array := (others => (others => '0'));
     signal dst_port : sel_array     := (others => (others => '0'));
     signal data_out : eightbit_array;
-    signal tx_ctrl  : std_logic_vector(0 to 3);
+    signal tx_ctrl  : std_logic_vector(3 downto 0);
 
     constant CLK_PERIOD : time := 10 ns;
 
 begin
 
     -- Unit Under Test
-    uut: crossbar
+    uut: crossbar_1
         port map (
             clk      => clk,
             reset    => reset,
@@ -69,7 +69,7 @@ begin
 
         -- Test Case 1: Port 0 manda un pacchetto a Output 1
         wait until falling_edge(clk);
-        dst_port(0) <= "0010"; 
+        dst_port(0) <= "0100"; 
         data_in(0)  <= '0' & x"AA"; -- Byte 1
         
         wait until falling_edge(clk);
