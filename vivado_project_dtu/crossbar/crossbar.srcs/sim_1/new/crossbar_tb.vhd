@@ -93,7 +93,7 @@ begin
     begin		
         -- Global Reset
         reset <= '1';
-        wait for 40 ns;
+        wait for 50 ns;
         reset <= '0';
         wait for 20 ns;
 
@@ -125,11 +125,11 @@ begin
         
         data_in(1) <= '0' & x"11";
         data_in(2) <= '0' & x"22";
-        wait for CLK_PERIOD;
+        wait for 4*CLK_PERIOD;
         
         data_in(1) <= '1' & x"EE"; -- EOF for Port 1
         data_in(2) <= '1' & x"FF"; -- EOF for Port 2
-        wait for CLK_PERIOD;
+        wait for 4*CLK_PERIOD;
 
         dst_port <= (others => "0000");
         data_in  <= (others => (others => '0'));

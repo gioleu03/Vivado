@@ -1,0 +1,120 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity newfifo_1 is
+    port (  
+        reset          : in std_logic; 
+        wclk           : in std_logic; -- Collegato al clock unico nel TB
+        rclk           : in std_logic; -- Collegato al clock unico nel TB
+        write_enable   : in std_logic; 
+        read_enable    : in std_logic; 
+        fifo_occu_in   : out std_logic_vector(4 downto 0); 
+        fifo_occu_out  : out std_logic_vector(4 downto 0); 
+        write_data_in  : in std_logic_vector(8 downto 0); -- 8 dati + 1 EOF
+        read_data_out  : out std_logic_vector(7 downto 0) 
+    ); 
+end newfifo_1; 
+
+architecture Behavioral of newfifo_1 is
+
+    -- Dichiarazione del componente generato da Quartus
+    component ram
+        PORT (
+            clock      : IN STD_LOGIC := '1';
+            data       : IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+            rdaddress  : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+            rden       : IN STD_LOGIC := '1';
+            wraddress  : IN STD_LOGIC_VECTOR (3 DOWNTO 0);
+            wren       : IN STD_LOGIC := '0';
+            q          : OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
+        );
+    end component;
+
+    -- Segnali per gestire la RAM a 16 bit
+    signal ram_d_in  : std_logic_vector(15 downto 0) := (others => '0');
+    signal ram_q_out : std_logic_vector(15 downto 0);
+
+    -- Puntatori e Sincronizzatori
+    signal wptr : std_logic_vector(4 downto 0) := (others => '0');
+    signal rptr : std_logic_vector(4 downto 0) := (others => '0');
+    signal wptr_saved : std_logic_vector(4 downto 0) := (others => '0');
+
+    -- Sincronizzatori (necessari anche se il clock è unico per stabilità)
+    signal rptr_s, wptr_saved_s : std_logic_vector(4 downto 0) := (others => '0');
+
+    signal full, empty : std_logic;
+
+begin
+
+    -- Adattamento bus: i tuoi 9 bit entrano nei 16 della RAM
+    ram_d_in(8 downto 0)  <= write_data_in;
+    ram_d_in(15 downto 9) <= (others => '0'); -- Padding
+
+    -- Istanziazione della RAM Quartus
+    ram_inst : ram 
+    PORT MAP (
+        clock      => wclk, -- Usiamo wclk (che è lo stesso di rclk)
+        data       => ram_d_in,
+        rdaddress  => rptr(3 downto 0),
+        rden       => read_enable and (not empty),
+        wraddress  => wptr(3 downto 0),
+        wren       => write_enable and (not full),
+        q          => ram_q_out
+    );
+
+    -- Recupero dei 9 bit originali dall'uscita RAM
+    read_data_out <= ram_q_out(7 downto 0);
+
+    -- Logica FULL / EMPTY
+    -- Usiamo il 5° bit per distinguere tra FIFO piena e vuota
+    full  <= '1' when (wptr(4) /= rptr_s(4) and wptr(3 downto 0) = rptr_s(3 downto 0)) else '0';
+    empty <= '1' when (rptr = wptr_saved_s) else '0';
+
+    -- Processo di Scrittura (Dominio wclk)
+    process(wclk, reset)
+        variable v_wptr : unsigned(4 downto 0);
+    begin
+        if reset = '1' then
+            wptr <= (others => '0');
+            wptr_saved <= (others => '0');
+            rptr_s <= (others => '0');
+        elsif rising_edge(wclk) then
+            -- Sincronizzazione rptr per il calcolo del FULL
+            rptr_s <= rptr; 
+
+            if write_enable = '1' and full = '0' then
+                v_wptr := unsigned(wptr) + 1;
+                wptr <= std_logic_vector(v_wptr);
+                -- Se arriva il bit di EOF, salviamo la posizione (Commit)
+                if write_data_in(8) = '1' then
+                    wptr_saved <= std_logic_vector(v_wptr);
+                end if;
+            elsif full = '1' and write_data_in(8) = '0' then
+                -- Se la FIFO è piena e il pacchetto non è finito, torniamo all'ultimo commit
+                wptr <= wptr_saved;
+            end if;
+        end if;
+    end process;
+
+    -- Processo di Lettura (Dominio rclk)
+    process(rclk, reset)
+    begin
+        if reset = '1' then
+            rptr <= (others => '0');
+            wptr_saved_s <= (others => '0');
+        elsif rising_edge(rclk) then
+            -- Sincronizzazione wptr_saved per il calcolo dell'EMPTY
+            wptr_saved_s <= wptr_saved;
+
+            if read_enable = '1' and empty = '0' then
+                rptr <= std_logic_vector(unsigned(rptr) + 1);
+            end if;
+        end if;
+    end process;
+
+    -- Output di monitoraggio
+    fifo_occu_in  <= wptr;
+    fifo_occu_out <= std_logic_vector(unsigned(wptr_saved_s) - unsigned(rptr));
+
+end Behavioral;

@@ -1,0 +1,13 @@
+# Compile of crossbar_1.vhd failed with 3 errors.
+# Compile of crossbar_1_tb.vhd failed with 3 errors.
+# Compile of newfifo_1.vhd failed with 2 errors.
+# Compile of ram.vhd was successful.
+# Compile of ram_inst.vhd failed with 1 errors.
+# 5 compiles, 4 failed with 9 errors.
+# Compile of crossbar_1.vhd failed with 3 errors.
+# Compile of crossbar_1.vhd failed with 3 errors.
+# Compile of crossbar_1_tb.vhd failed with 3 errors.
+# Compile of newfifo_1.vhd failed with 2 errors.
+# Compile of ram.vhd was successful.
+# Compile of ram_inst.vhd failed with 1 errors.
+# 5 compiles, 4 failed with 9 errors.

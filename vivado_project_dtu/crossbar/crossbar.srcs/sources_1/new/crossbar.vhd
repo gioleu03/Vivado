@@ -31,7 +31,7 @@ package switch_types is
     type sel_array is array (0 to 3) of std_logic_vector(0 to 3);
     type occu_array is array (0 to 3) of std_logic_vector(4 downto 0);
     type input_sel is array (0 to 3) of integer range 0 to 3;
-    type state_type is (IDLE, SENDING);
+    type state_type is (IDLE, WAIT_DATA, SENDING);
     type state_array is array (0 to 3) of state_type;
     type ninebit_matrix is array (0 to 3, 0 to 3) of std_logic_vector(8 downto 0);
     type occu_matrix is array (0 to 3, 0 to 3) of std_logic_vector(4 downto 0);
@@ -125,16 +125,26 @@ begin
                 matrix_rd_en(i, j) <= '0';
             end loop;
         elsif rising_edge(clk) then
+            for i in 0 to 3 loop
+                matrix_rd_en(i, j) <= '0';
+            end loop;
             tx_ctrl(j) <= '0';
             case state(j) is
                 when IDLE =>
                     -- Check if FIFO(input i, output j) has data
                     if  (dst_port(current_port(j))(j) = '1') then   --(matrix_occu(current_port(j), j) /= "00000") and
-                        selected_input(j) <= current_port(j);
-                        state(j) <= SENDING;
+                        selected_input(j) <= current_port(j); 
+                        matrix_rd_en(current_port(j), j) <= '1';
+                        state(j) <= WAIT_DATA;
                     else 
                         current_port(j) <= (current_port(j) + 1) mod 4;
                     end if;
+                    
+                when WAIT_DATA =>
+                    -- In questo ciclo la BRAM sta processando l'indirizzo.
+                    -- Teniamo rd_en alto per preparare già il secondo byte.
+                    matrix_rd_en(selected_input(j), j) <= '1';
+                    state(j) <= SENDING; -- Al prossimo colpo il dato sarà pronto
 
                 when SENDING =>
                     matrix_rd_en(selected_input(j), j) <= '1';
@@ -144,6 +154,9 @@ begin
                     if fifo_matrix_out(selected_input(j), j)(8) = '1' then -- Fine frame 
                         state(j) <= IDLE;
                         current_port(j) <= (current_port(j) + 1) mod 4;
+                        matrix_rd_en(selected_input(j), j) <= '0';
+                    else
+                        matrix_rd_en(selected_input(j), j) <= '1';
                     end if;
             end case;
         end if;

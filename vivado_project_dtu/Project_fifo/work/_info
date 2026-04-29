@@ -1,0 +1,77 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA_lite/20.1
+Enewfifo_1
+w1777450349
+DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z1 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 2
+Z2 dC:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/Project_fifo
+8C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/newfifo_1.vhd
+FC:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/newfifo_1.vhd
+l0
+L5 1
+V`Z=dZSNNES;eF8zQRZNBL0
+!s100 e2PjnaIz_kIlfAbl4HClj1
+Z3 OV;C;2020.1;71
+32
+Z4 !s110 1777450863
+!i10b 1
+Z5 !s108 1777450863.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/newfifo_1.vhd|
+!s107 C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/newfifo_1.vhd|
+!i113 1
+Z6 o-work work -2002 -explicit
+Z7 tExplicit 1 CvgOpt 0
+Eram
+Z8 w1777282443
+Z9 DPx9 altera_mf 20 altera_mf_components 0 22 BN6nPmY:UEbXa[^5b@FTW1
+R0
+R1
+!i122 3
+R2
+Z10 8C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/ram.vhd
+Z11 FC:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/ram.vhd
+l0
+L43 1
+Vh6PYk1ldfio4e31;OgmVi2
+!s100 o1DC9zQDAgVQiCO8SEO422
+R3
+32
+R4
+!i10b 1
+R5
+Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/ram.vhd|
+Z13 !s107 C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/ram.vhd|
+!i113 1
+R6
+R7
+Asyn
+R9
+R0
+R1
+Z14 DEx4 work 3 ram 0 22 h6PYk1ldfio4e31;OgmVi2
+!i122 3
+l61
+Z15 L57 43
+Z16 VkWj]S<_>j34AMWd=1_Pf_2
+Z17 !s100 MH^P37Vk2E[T1=z2cAf8U2
+R3
+32
+R4
+!i10b 1
+R5
+R12
+R13
+!i113 1
+R6
+R7

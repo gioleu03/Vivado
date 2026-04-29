@@ -1,4 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sources_1/new/crossbar.vhd" into library xil_defaultlib
-INFO: [VRFC 10-3107] analyzing entity 'crossbar'
 INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sim_1/new/crossbar_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'crossbar_tb'

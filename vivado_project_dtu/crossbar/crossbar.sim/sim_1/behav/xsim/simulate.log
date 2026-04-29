@@ -1,0 +1,5 @@
+Vivado Simulator 2018.3
+Time resolution is 1 ps
+Failure: Simulation Finished
+Time: 330 ns  Iteration: 0  Process: /crossbar_tb/stim_proc  File: C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sim_1/new/crossbar_tb.vhd
+$finish called at time : 330 ns : File "C:/Users/giorg/Desktop/Github/Vivado/vivado_project_dtu/crossbar/crossbar.srcs/sim_1/new/crossbar_tb.vhd" Line 140
